@@ -34,9 +34,8 @@ export function renderAuth() {
                             </div>
                             <input 
                                 type="password" 
-                                placeholder="Password" 
+                                placeholder="Password (optional for magic link)" 
                                 class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary" 
-                                required
                                 data-testid="input-password"
                                 id="password"
                             >
@@ -110,32 +109,36 @@ async function handleAuth(e) {
     const password = document.getElementById('password').value;
     const isLogin = window.location.hash.includes('login');
     
-    if (!email || !password) {
-        showToast('Please fill in all fields', 'error');
+    if (!email) {
+        showToast('Please enter your email address', 'error');
         return;
     }
     
     try {
         let result;
         
-        if (isLogin) {
+        if (isLogin && password) {
+            // Login with password if provided
             result = await supa.auth.signInWithPassword({
                 email,
                 password,
             });
         } else {
-            result = await supa.auth.signUp({
+            // Use magic link for both signup and login (more reliable)
+            result = await supa.auth.signInWithOtp({
                 email,
-                password,
+                options: {
+                    shouldCreateUser: !isLogin, // Create user for signup, don't for login
+                }
             });
         }
         
         if (result.error) throw result.error;
         
-        if (isLogin) {
+        if (isLogin && password) {
             showToast('Welcome back!', 'success');
         } else {
-            showToast('Please check your email to confirm your account', 'success');
+            showToast('Magic link sent! Check your email', 'success');
         }
         
     } catch (error) {
