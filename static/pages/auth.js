@@ -77,7 +77,7 @@ export function renderAuth() {
                     <div class="mt-4 text-center">
                         <button 
                             class="text-sm text-primary hover:text-blue-700 font-medium" 
-                            onclick="window.router.navigate('${isLogin ? '/signup' : '/login}')"
+                            onclick="window.router.navigate('${isLogin ? '/signup' : '/login'}')"
                             data-testid="button-toggle-mode"
                         >
                             ${isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}

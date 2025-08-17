@@ -109,8 +109,34 @@ class Router {
         }
       }
 
-      // Render the current route
-      const content = await this.currentRoute(this.params)
+      // Safe rendering wrapper
+      const safeRender = async (renderFn, params) => {
+        try {
+          const content = await renderFn(params)
+          if (typeof content === 'string' && content.trim()) {
+            return content
+          } else {
+            throw new Error('Page render function returned empty or invalid content')
+          }
+        } catch (renderError) {
+          console.error('Page render error:', renderError)
+          return `
+            <div class="min-h-screen flex items-center justify-center p-6">
+              <div class="text-center max-w-md">
+                <h1 class="text-2xl font-bold text-gray-900 mb-4">Page Error</h1>
+                <p class="text-gray-600 mb-4">This page couldn't be loaded properly.</p>
+                <pre class="text-xs text-red-600 bg-red-100 p-2 rounded mb-4 overflow-auto">${renderError.message}</pre>
+                <button onclick="window.router.navigate('/')" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                  Go Home
+                </button>
+              </div>
+            </div>
+          `
+        }
+      }
+
+      // Render the current route with safe wrapper
+      const content = await safeRender(this.currentRoute, this.params)
       app.innerHTML = content
 
       // Execute any post-render scripts
@@ -118,16 +144,17 @@ class Router {
     } catch (error) {
       console.error("Router render error:", error)
       app.innerHTML = `
-                <div class="min-h-screen flex items-center justify-center">
-                    <div class="text-center">
-                        <h1 class="text-2xl font-bold text-gray-900 mb-4">Something went wrong</h1>
-                        <p class="text-gray-600 mb-4">Please try refreshing the page</p>
-                        <button onclick="window.location.reload()" class="bg-primary text-white px-4 py-2 rounded-lg">
-                            Refresh Page
-                        </button>
-                    </div>
-                </div>
-            `
+        <div class="min-h-screen flex items-center justify-center p-6">
+          <div class="text-center max-w-md">
+            <h1 class="text-2xl font-bold text-gray-900 mb-4">Something went wrong</h1>
+            <p class="text-gray-600 mb-4">Please try refreshing the page</p>
+            <pre class="text-xs text-red-600 bg-red-100 p-2 rounded mb-4 overflow-auto">${error.message}</pre>
+            <button onclick="window.location.reload()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+              Refresh Page
+            </button>
+            </div>
+        </div>
+      `
     }
   }
 
