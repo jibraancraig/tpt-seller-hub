@@ -1,0 +1,14 @@
+export function renderSocial() {
+    return `
+        <div class="min-h-screen bg-gray-50 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Social Content Generator</h1>
+                <p class="text-gray-600 mb-8">Generate engaging social media content for your products</p>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+                    <p class="text-gray-600">Social content generation coming soon...</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
