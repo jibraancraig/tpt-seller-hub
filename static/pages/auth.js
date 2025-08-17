@@ -34,8 +34,9 @@ export function renderAuth() {
                             </div>
                             <input 
                                 type="password" 
-                                placeholder="Password (optional for magic link)" 
+                                placeholder="Password (required for signup)" 
                                 class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary" 
+                                required
                                 data-testid="input-password"
                                 id="password"
                             >
@@ -109,8 +110,8 @@ async function handleAuth(e) {
     const password = document.getElementById('password').value;
     const isLogin = window.location.hash.includes('login');
     
-    if (!email) {
-        showToast('Please enter your email address', 'error');
+    if (!email || !password) {
+        showToast('Please fill in all fields', 'error');
         return;
     }
     
@@ -124,12 +125,12 @@ async function handleAuth(e) {
                 password,
             });
         } else {
-            // Use magic link for both signup and login (more reliable)
-            result = await supa.auth.signInWithOtp({
+            // Use proper signup with email confirmation
+            const emailRedirectTo = `${window.location.origin}/#/auth/callback`;
+            result = await supa.auth.signUp({
                 email,
-                options: {
-                    shouldCreateUser: !isLogin, // Create user for signup, don't for login
-                }
+                password: password || 'temporary-password-' + Date.now(), // Generate temp password if none provided
+                options: { emailRedirectTo }
             });
         }
         
@@ -138,7 +139,7 @@ async function handleAuth(e) {
         if (isLogin && password) {
             showToast('Welcome back!', 'success');
         } else {
-            showToast('Magic link sent! Check your email', 'success');
+            showToast('Check your inbox for a confirmation link to finish signing up!', 'success');
         }
         
     } catch (error) {

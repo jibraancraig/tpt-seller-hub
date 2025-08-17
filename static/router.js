@@ -1,5 +1,6 @@
 import { renderLanding } from "./pages/landing.js"
 import { renderAuth } from "./pages/auth.js"
+import { renderAuthCallback } from "./pages/auth_callback.js"
 import { renderDashboard } from "./pages/dashboard.js"
 import { renderProducts } from "./pages/products.js"
 import { renderProductDetail } from "./pages/product_detail.js"
@@ -14,6 +15,7 @@ class Router {
       "/": renderLanding,
       "/login": renderAuth,
       "/signup": renderAuth,
+      "/auth/callback": renderAuthCallback,
       "/dashboard": renderDashboard,
       "/products": renderProducts,
       "/product/:id": renderProductDetail,
