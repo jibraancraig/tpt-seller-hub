@@ -2,7 +2,34 @@
 
 ## Step 1: Push to GitHub
 
-### Option A: Using GitHub CLI (Recommended)
+### Option A: Using SSH (Recommended)
+1. **Add SSH Key to GitHub**:
+   - Go to [GitHub Settings > SSH and GPG keys](https://github.com/settings/keys)
+   - Click "New SSH key"
+   - Title: `MacBook Pro` (or your preferred name)
+   - Key: Copy your SSH public key:
+     ```bash
+     cat ~/.ssh/id_ed25519.pub
+     ```
+   - Click "Add SSH key"
+
+2. **Create Repository on GitHub**:
+   - Go to [https://github.com/new](https://github.com/new)
+   - Name: `tpt-seller-hub`
+   - Description: `TPT Seller Hub - Static Site`
+   - Make it public
+   - Don't initialize with README, .gitignore, or license
+
+3. **Push Using SSH**:
+   ```bash
+   # Add remote using SSH URL
+   git remote add origin git@github.com:YOUR_USERNAME/tpt-seller-hub.git
+   
+   # Push to GitHub
+   git push -u origin main
+   ```
+
+### Option B: Using GitHub CLI (Alternative)
 ```bash
 # Install GitHub CLI if not already installed
 brew install gh
@@ -17,7 +44,7 @@ gh repo create tpt-seller-hub --public --description "TPT Seller Hub - Static Si
 gh repo create tpt-seller-hub --public --description "TPT Seller Hub - Static Site" --source=. --remote=origin --push --clone
 ```
 
-### Option B: Manual GitHub Setup
+### Option C: Manual GitHub Setup with HTTPS
 1. Go to [GitHub.com](https://github.com) and create a new repository
 2. Name it `tpt-seller-hub` (or your preferred name)
 3. Make it public
@@ -69,6 +96,7 @@ After deployment, you may need to configure:
 - `SUPABASE_ANON_KEY`: Your Supabase anonymous key
 - `OPENAI_API_KEY`: For AI features (optional)
 - `SERPAPI_KEY`: For search data (optional)
+- `BUFFER_WEBHOOK_URL`: For social media scheduling (optional)
 
 ### Custom Domain (Optional)
 1. Go to your project settings in Vercel
@@ -103,6 +131,11 @@ After deployment, you may need to configure:
 **Authentication Issues**
 - Verify Supabase project settings
 - Check redirect URLs in Supabase auth settings
+
+**SSH Issues**
+- Ensure your SSH key is added to GitHub
+- Test SSH connection: `ssh -T git@github.com`
+- Add SSH key to agent: `ssh-add ~/.ssh/id_ed25519`
 
 ## Next Steps
 
