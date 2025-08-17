@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TPT Seller App – Product Flow</title>
+<style>
+  body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+  h1 { margin-bottom: 8px; }
+  .subtitle { color: #444; margin-top: 0; }
+  .canvas-wrap { border: 1px solid #ddd; border-radius: 12px; padding: 16px; overflow-x: auto; background: #fafafa; }
+  svg { max-width: 100%; height: auto; }
+  .legend { font-size: 14px; color: #333; margin-top: 6px; }
+  section { margin-top: 28px; }
+  section h2 { margin-bottom: 6px; }
+  section p, li { color: #222; line-height: 1.4; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; }
+  .pill { display:inline-block; padding: 2px 8px; border-radius: 999px; background:#eef; color:#223; font-size:12px; margin-left: 6px; }
+</style>
+</head>
+<body>
+<h1>All‑in‑One TPT Seller App — Clickable Product Flow</h1>
+<p class="subtitle">Click a box to jump to details. Use this to brief devs and align scope.</p>
+
+<div class="canvas-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 740" role="img" aria-label="Product flow diagram">
+  <defs>
+    <style>
+      .box { fill: #ffffff; stroke: #222; stroke-width: 1.5; rx: 10; }
+      .boxBlue { fill: #e8f0ff; }
+      .boxGreen { fill: #e7fff3; }
+      .boxYellow { fill: #fff9e6; }
+      .boxPink { fill: #ffeaf2; }
+      .text { font: 14px sans-serif; fill: #111; }
+      .title { font: 15px sans-serif; font-weight: 700; }
+      .arrow { stroke: #555; stroke-width: 1.5; marker-end: url(#arrowhead); fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+  </defs>
+
+  <!-- Row 1 -->
+  <a xlink:href="#auth">
+    <rect class="box boxBlue" x="40" y="40" width="210" height="80" />
+    <text class="title" x="145" y="70" text-anchor="middle">Sign up / Login</text>
+    <text class="text" x="145" y="92" text-anchor="middle">Auth + Onboarding</text>
+  </a>
+
+  <a xlink:href="#connect">
+    <rect class="box boxBlue" x="300" y="40" width="260" height="80" />
+    <text class="title" x="430" y="70" text-anchor="middle">Connect TPT Account</text>
+    <text class="text" x="430" y="92" text-anchor="middle">API / Import / Scrape</text>
+  </a>
+
+  <a xlink:href="#import">
+    <rect class="box boxBlue" x="600" y="40" width="240" height="80" />
+    <text class="title" x="720" y="70" text-anchor="middle">Import Products</text>
+    <text class="text" x="720" y="92" text-anchor="middle">Titles • Descriptions • Tags</text>
+  </a>
+
+  <a xlink:href="#dashboard">
+    <rect class="box boxBlue" x="880" y="40" width="220" height="80" />
+    <text class="title" x="990" y="70" text-anchor="middle">Dashboard</text>
+    <text class="text" x="990" y="92" text-anchor="middle">Overview & Shortcuts</text>
+  </a>
+
+  <a xlink:href="#settings">
+    <rect class="box boxBlue" x="1140" y="40" width="180" height="80" />
+    <text class="title" x="1230" y="70" text-anchor="middle">Settings</text>
+    <text class="text" x="1230" y="92" text-anchor="middle">Billing • Integrations</text>
+  </a>
+
+  <!-- Arrows row 1 -->
+  <line class="arrow" x1="250" y1="80" x2="300" y2="80"/>
+  <line class="arrow" x1="560" y1="80" x2="600" y2="80"/>
+  <line class="arrow" x1="840" y1="80" x2="880" y2="80"/>
+  <line class="arrow" x1="1100" y1="80" x2="1140" y2="80"/>
+
+  <!-- Row 2 from Dashboard -->
+  <a xlink:href="#seo">
+    <rect class="box boxGreen" x="60" y="190" width="300" height="110" />
+    <text class="title" x="210" y="220" text-anchor="middle">SEO Optimizer</text>
+    <text class="text" x="210" y="242" text-anchor="middle">Keywords • Titles • Descriptions</text>
+    <text class="text" x="210" y="262" text-anchor="middle">Score & Recommendations</text>
+  </a>
+
+  <a xlink:href="#rank">
+    <rect class="box boxYellow" x="400" y="190" width="300" height="110" />
+    <text class="title" x="550" y="220" text-anchor="middle">Keyword & Rank Tracker</text>
+    <text class="text" x="550" y="242" text-anchor="middle">Positions over time • Alerts</text>
+    <text class="text" x="550" y="262" text-anchor="middle">Competitor comparison</text>
+  </a>
+
+  <a xlink:href="#social">
+    <rect class="box boxPink" x="740" y="190" width="270" height="110" />
+    <text class="title" x="875" y="220" text-anchor="middle">Social Content Generator</text>
+    <text class="text" x="875" y="242" text-anchor="middle">Pins • IG captions • FB posts</text>
+    <text class="text" x="875" y="262" text-anchor="middle">Schedule via Buffer/etc</text>
+  </a>
+
+  <a xlink:href="#analytics">
+    <rect class="box" x="1040" y="190" width="260" height="110" />
+    <text class="title" x="1170" y="220" text-anchor="middle">Analytics & Insights</text>
+    <text class="text" x="1170" y="242" text-anchor="middle">Sales • Views • Conversion</text>
+    <text class="text" x="1170" y="262" text-anchor="middle">Change impact</text>
+  </a>
+
+  <!-- Arrows from Dashboard down -->
+  <line class="arrow" x1="990" y1="120" x2="210" y2="190"/>
+  <line class="arrow" x1="990" y1="120" x2="550" y2="190"/>
+  <line class="arrow" x1="990" y1="120" x2="875" y2="190"/>
+  <line class="arrow" x1="990" y1="120" x2="1170" y2="190"/>
+
+  <!-- Row 3: Actions -->
+  <a xlink:href="#publish">
+    <rect class="box boxGreen" x="140" y="350" width="260" height="90" />
+    <text class="title" x="270" y="382" text-anchor="middle">Publish Changes</text>
+    <text class="text" x="270" y="404" text-anchor="middle">Update on TPT</text>
+  </a>
+
+  <a xlink:href="#jobs">
+    <rect class="box boxYellow" x="480" y="350" width="280" height="90" />
+    <text class="title" x="620" y="382" text-anchor="middle">Background Jobs</text>
+    <text class="text" x="620" y="404" text-anchor="middle">Rank fetch • Reports • Alerts</text>
+  </a>
+
+  <a xlink:href="#schedule">
+    <rect class="box boxPink" x="820" y="350" width="280" height="90" />
+    <text class="title" x="960" y="382" text-anchor="middle">Schedule & Queue</text>
+    <text class="text" x="960" y="404" text-anchor="middle">Social posts & experiments</text>
+  </a>
+
+  <!-- arrows down -->
+  <line class="arrow" x1="210" y1="300" x2="270" y2="350"/>
+  <line class="arrow" x1="550" y1="300" x2="620" y2="350"/>
+  <line class="arrow" x1="875" y1="300" x2="960" y2="350"/>
+
+  <!-- Row 4: Data layer -->
+  <a xlink:href="#data">
+    <rect class="box" x="320" y="500" width="720" height="110" />
+    <text class="title" x="680" y="532" text-anchor="middle">Data & Infra</text>
+    <text class="text" x="680" y="554" text-anchor="middle">PostgreSQL/Supabase • Object storage • Caches</text>
+    <text class="text" x="680" y="574" text-anchor="middle">Auth (JWT) • Stripe Billing • Audit logs</text>
+  </a>
+
+  <!-- arrows to data -->
+  <line class="arrow" x1="270" y1="440" x2="480" y2="500"/>
+  <line class="arrow" x1="620" y1="440" x2="680" y2="500"/>
+  <line class="arrow" x1="960" y1="440" x2="840" y2="500"/>
+
+</svg>
+<div class="legend">Legend: <span class="pill">Blue: Core UX</span> <span class="pill" style="background:#e7fff3;">Green: SEO/Content</span> <span class="pill" style="background:#fff9e6;">Yellow: Tracking/Jobs</span> <span class="pill" style="background:#ffeaf2;">Pink: Social</span></div>
+</div>
+
+<!-- Details -->
+<section id="auth">
+  <h2>Sign up / Login</h2>
+  <ul>
+    <li>Email + password or Google OAuth.</li>
+    <li>Onboarding: choose goals (traffic, conversion, social growth) to personalize tips.</li>
+  </ul>
+</section>
+
+<section id="connect">
+  <h2>Connect TPT Account</h2>
+  <ul>
+    <li>Method A: API (if available).</li>
+    <li>Method B: Guided import (CSV/HTML) + optional headless browser for scrape sync.</li>
+    <li>Token vault for credentials; read‑only by default.</li>
+  </ul>
+</section>
+
+<section id="import">
+  <h2>Import Products</h2>
+  <ul>
+    <li>Pull: title, description, tags, price, preview images, last updated.</li>
+    <li>Normalize + version each product to support A/B tests.</li>
+  </ul>
+</section>
+
+<section id="dashboard">
+  <h2>Dashboard</h2>
+  <ul>
+    <li>Tiles: SEO tasks, rank alerts, social queue, recent wins.</li>
+    <li>Search + filters by subject/grade/format.</li>
+  </ul>
+</section>
+
+<section id="seo">
+  <h2>SEO Optimizer</h2>
+  <ul>
+    <li>Keyword ideas via Suggest + internal search scraping.</li>
+    <li>AI rewrite for titles/descriptions with constraints (length, keywords, tone).</li>
+    <li>SEO score with rationale and quick‑fix checklist.</li>
+  </ul>
+</section>
+
+<section id="rank">
+  <h2>Keyword & Rank Tracker</h2>
+  <ul>
+    <li>Track chosen keywords per product; fetch rankings daily/weekly.</li>
+    <li>Notify on drops or breakthroughs; annotate changes.</li>
+  </ul>
+</section>
+
+<section id="social">
+  <h2>Social Content Generator</h2>
+  <ul>
+    <li>Generate Pin titles/descriptions, IG/FB captions.</li>
+    <li>Canva/Cloudinary templates for images; schedule via Buffer/Later.</li>
+  </ul>
+</section>
+
+<section id="analytics">
+  <h2>Analytics & Insights</h2>
+  <ul>
+    <li>Blend sales/views (manual CSV or API) with rank and SEO edits.</li>
+    <li>Show impact: “After title change +15% CVR”.</li>
+  </ul>
+</section>
+
+<section id="publish">
+  <h2>Publish Changes</h2>
+  <ul>
+    <li>One‑click export back to TPT (or copy/paste assistant with change log).</li>
+    <li>Versioning + rollback.</li>
+  </ul>
+</section>
+
+<section id="jobs">
+  <h2>Background Jobs</h2>
+  <ul>
+    <li>Queues for rank fetching, keyword refresh, report emails.</li>
+    <li>Rate‑limit aware; retries; observability.</li>
+  </ul>
+</section>
+
+<section id="schedule">
+  <h2>Schedule & Queue</h2>
+  <ul>
+    <li>Calendar for social posts and A/B tests.</li>
+    <li>UTM tagging for attribution.</li>
+  </ul>
+</section>
+
+<section id="settings">
+  <h2>Settings</h2>
+  <ul>
+    <li>Integrations: Pinterest, Buffer, MailerLite, Google Sheets.</li>
+    <li>Billing via Stripe; plan limits (products, tracked keywords, AI tokens).</li>
+    <li>Team seats & roles (optional).</li>
+  </ul>
+</section>
+
+<section id="data">
+  <h2>Data & Infra</h2>
+  <ul>
+    <li>PostgreSQL/Supabase; S3‑compatible storage for assets.</li>
+    <li>Auth with JWT; Stripe subscriptions; audit logs.</li>
+    <li>Infra: Vercel/Netlify (frontend), Fly.io/Render (backend) or Supabase Edge Functions.</li>
+  </ul>
+</section>
+
+</body>
+</html>
